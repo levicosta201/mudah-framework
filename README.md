@@ -1,4 +1,4 @@
-# Projeto avaliativo desenvolvido para webjump
+# Mudah Framework
 
 Este README deve ser utilizado para consultas do projeto e instruções de instalação do mesmo.
 
