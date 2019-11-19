@@ -190,3 +190,8 @@ Auxilia na conexão PDO com banco de dados
 * [Blade](https://github.com/jenssegers/blade)
 
 Utilização de camada de visualização blade do laravel no projeto
+
+```
+Contributors s2:
+	- John O. Paul
+```
