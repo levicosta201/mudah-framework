@@ -9,7 +9,8 @@
  * 
  */
 
-use \App\Controller\IndexController as IndexController;
+use \App\Controller\DashboardController as DashboardController;
+use \App\Controller\LoginController as LoginController;
 
 use Zend\Diactoros\ServerRequestFactory;
 use function FastRoute\simpleDispatcher;
@@ -47,7 +48,12 @@ $containerBuilder = new ContainerBuilder();
 $containerBuilder->useAutowiring(false);
 $containerBuilder->useAnnotations(false);
 $containerBuilder->addDefinitions([
-    IndexController::class => create(IndexController::class)
+    DashboardController::class => create(DashboardController::class)
+        ->constructor(get('Response')),
+        'Response' => function() {
+            return new Response();
+        },
+    LoginController::class => create(LoginController::class)
         ->constructor(get('Response')),
         'Response' => function() {
             return new Response();
@@ -62,7 +68,10 @@ $container = $containerBuilder->build();
 */ 
 $routes = simpleDispatcher(function (RouteCollector $route) {    
     //Routes for Dashboard
-    $route->get('/', [IndexController::class, 'index']);
+    $route->get('/', [LoginController::class, 'index']);
+    $route->get('/github/callback/', [LoginController::class, 'gitHubCallBackLogin']);
+
+    $route->get('/auth/dashboard/', [DashboardController::class, 'index']);
 });
 
 $middlewareQueue[] = new FastRoute($routes);
