@@ -18,9 +18,13 @@
         "larapack/dd": "1.*",
         "faapz/pdo": "^1.11",
         "jenssegers/blade": "^1.2",
-        "ixudra/curl": "6.*"
+        "ixudra/curl": "6.*",
+        "phpunit/phpunit" : "*"
     },
     "autoload": {
+        "psr-0" : {
+            "App\\Unit": "src/"
+        },
         "psr-4" : {
             "App\\Controller\\": "App/Controller/",
             "App\\Model\\": "App/Model/",
