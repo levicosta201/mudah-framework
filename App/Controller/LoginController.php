@@ -56,6 +56,15 @@ class LoginController extends Controller
 		return redirect('auth/dashboard/');
 	}
 
+	public function logout()
+	{
+		removeSession('code');
+		removeSession('state');
+		removeSession('access_token');
+		removeSession('user_data');
+	    return redirect('');
+	}
+
 	public function gitHubCallBackLogin($request)
 	{
 		$request = (object) $request->getQueryParams();
