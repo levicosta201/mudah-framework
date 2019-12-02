@@ -47,8 +47,9 @@ class LoginController extends Controller
 	public function index()
 	{
 		$security_hash = hash('sha256', microtime(TRUE) . rand() . $_SERVER['REMOTE_ADDR']);
+		$user_data = getSession('user_data');
 
-		if(!getSession('user_data') or isset($access_token->error))
+		if(!$user_data or $user_data = '')
 			return view('auth.login', [
 				'url_o_auth' => htmlspecialchars($this->git_hub_controller->getAuthorizeURL($security_hash))
 			]);
