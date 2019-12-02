@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of the leviframework to projetc git-hub-api.
  *
@@ -11,22 +10,17 @@
 
 namespace App\Controller;
 
-
+use PHPUnit_Framework_TestCase as PHPUnit;
 
 /**
  * Class Controller.
  *
  * @author Levi Costa <levi.costa1@gmail.com>
  */
-class Controller
+class RepositoriesTes
 {
-	/**
-     * @var integer
-     */
-	public $default_user_id;
-
-	public function __construct()
+	public function testType()
 	{
-		$this->default_user_id = 1;
+		
 	}
 }
