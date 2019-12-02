@@ -84,6 +84,26 @@ class GitHubController
 		return $this->sendCurl('https://api.github.com/users/levicosta201/repos', $access_token_url);
 	}
 
+	public function getRepoDetail($url, $access_token_url)
+	{
+		return $this->sendCurl($url, $access_token_url);
+	}
+
+	public function getRepoBranche($url, $access_token_url)
+	{
+		return $this->sendCurl($url, $access_token_url);
+	}
+
+	public function getBrancheDetail($url, $access_token_url)
+	{
+		return $this->sendCurl($url, $access_token_url);
+	}
+
+	public function searchRepo($url, $access_token_url, $query, $language)
+	{
+		return $this->sendCurl($url . '?q=' .$query . '+language:'.$language.'&sort=stars&order=desc', $access_token_url);
+	}
+
 	private function sendCurl($url, $access_token_url)
 	{
 		$ch = curl_init();
