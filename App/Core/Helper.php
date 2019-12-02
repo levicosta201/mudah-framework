@@ -70,3 +70,43 @@ if(!function_exists('redirect')) {
 		return dd(header('Location: ' . url($url)));
 	}
 }
+
+if(!function_exists('storeUserData')) {
+	function storeUserData()
+	{
+
+	}
+}
+
+if(!function_exists('getUserData')) {
+	function getUserData()
+	{
+		
+	}
+}
+
+if(!function_exists('changeBorderColor')) {
+	function changeBorderColor($language)
+	{
+		switch ($language) {
+			case 'php':
+				return 'primary';
+				break;
+			case 'java':
+				return 'success';
+				break;
+			case 'javascript':
+				return 'info';
+				break;
+			case 'c':
+				return 'warning';
+				break;
+			case 'c++':
+				return 'danger';
+				break;			
+			default:
+				return 'primary';
+				break;
+		}
+	}
+}
