@@ -28,7 +28,7 @@ class GitHubController
 	const GIT_HUB_API_URL = 'https://api.github.com/';
 	const CLIENT_ID = '115fd34142024b6e5b82';
 	const CLIENT_SECRET = 'd351510603c15a33497f9f0299d558b0d44dba2f';
-	const REDIRECT_URI = 'http://localhost:8000/github/callback/';
+	const REDIRECT_URI = 'https://git-teste-api-php.herokuapp.com/github/callback/';
 	
 	public function getAuthorizeUrl(string $state, string $scope = 'user:email')
 	{
