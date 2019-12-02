@@ -81,8 +81,9 @@ class LoginController extends Controller
 			return redirect('/');
 
 		$api_access_token = $this->git_hub_controller->getAccessToken($request->state, $request->code);
-		$token_generated = $api_access_token->access_token;
 		dd($api_access_token);
+		$token_generated = $api_access_token->access_token;
+
 		if(!$token_generated)
 			return redirect('');
 
