@@ -91,7 +91,10 @@ class DashboardController extends Controller
 			$search_result->{$i}->language = $language;
 
 			foreach($search_result->{$i}->items as $item) {
-				$this->repositories_model->saveRespoitorie($item->name, base64_encode($item->url), $item->private ? 'private' : 'public', $language, isset($item->descitption) ? $item->descitption : 'Not Description');
+				$get_repository_by_url = $this->repositories_model->getRepositorieByUrl(base64_encode($item->url));
+				
+				if(!$get_repository_by_url)
+					$this->repositories_model->saveRespoitorie($item->name, base64_encode($item->url), $item->private ? 'private' : 'public', $language, isset($item->descitption) ? $item->descitption : 'Not Description');
 			}
 		}
 
