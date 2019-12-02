@@ -84,6 +84,10 @@ class DashboardController extends Controller
 
 			$search_result->{$i} = $this->git_hub_controller->searchRepo('https://api.github.com/search/repositories', $this->access_token, $search_term, $language);
 			$search_result->{$i}->language = $language;
+
+			foreach($search_result->{$i}->items as $item) {
+				$this->repositories_model->saveRespoitorie($item->name, base64_encode($item->url), $item->private ? 'private' : 'public', $language, isset($item->descitption) ? $item->descitption : 'Not Description');
+			}
 		}
 
 		//first convert object result form search to array
