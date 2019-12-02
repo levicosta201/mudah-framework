@@ -125,6 +125,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ url('dashboard/js/sb-admin-2.min.js') }}"></script>
+    @yield('script')
 
 </body>
 
