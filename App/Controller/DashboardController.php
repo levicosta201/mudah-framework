@@ -16,6 +16,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Controller\GitHubController;
+use App\Model\Repositories as RepositoriesModel;
 
 use Psr\Http\Message\ResponseInterface;
 
@@ -40,6 +41,10 @@ class DashboardController extends Controller
 
 	private $code;
 
+	private $user_data;
+
+	private $repositories_model;
+
 	public function __construct(ResponseInterface $response)
 	{
 		parent::__construct();
@@ -47,16 +52,16 @@ class DashboardController extends Controller
 		$this->git_hub_controller = new GitHubController;
 		$this->access_token = getSession('access_token');
 		$this->state = getSession('state');
-		$this->code = getSession('code');	
+		$this->code = getSession('code');
+		$this->user_data = getSession('user_data');
+		$this->repositories_model = new RepositoriesModel;
 	}
 
 	public function index()
 	{
-		$user_data = $this->git_hub_controller->getUserData($this->access_token);
 		$repos = $this->git_hub_controller->getUserRepos($this->access_token);
-
 		return view('auth.dashboard.index', [
-			'user_data' => $user_data,
+			'user_data' => $this->user_data,
 			'repos' => $repos,
 		]);
 	}
@@ -101,7 +106,7 @@ class DashboardController extends Controller
 
 		return view('auth.search.result', [
 			'search_result' => $search_result_to_object,
-			'user_data' => $user_data,
+			'user_data' => $this->user_data,
 			'search_term' => $search_term,
 		]);
 	}
