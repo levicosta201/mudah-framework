@@ -1,14 +1,15 @@
 <?php
 
 /*
- * This file is part of the leviframework to projetc webjump.
+ * This file is part of the leviframework to projetc git-hub-api.
  *
  * (c) Levi Costa <levi.costa1@gmail.com>
  *
  * For non-commercial use
  * 
  */
- 
+
+
  /*
   * Set PHP heavily typed
   */
@@ -33,14 +34,29 @@ class DashboardController extends Controller
      */
 	private $response;
 
+	/**
+     * @var String
+     */
 	private $access_token;
 
+	/**
+     * @var Class Model
+     */
 	private $git_hub_controller;
 
+	/**
+     * @var String
+     */
 	private $state;
 
+	/**
+     * @var String
+     */
 	private $code;
 
+	/**
+     * @var String
+     */
 	private $user_data;
 
 	private $repositories_model;
@@ -60,6 +76,11 @@ class DashboardController extends Controller
 			return redirect('');
 	}
 
+	/**
+	 * show view index dashboard
+	 * @param void
+	 * @return View
+	*/
 	public function index()
 	{
 		$repos = $this->git_hub_controller->getUserRepos($this->access_token);
@@ -69,6 +90,11 @@ class DashboardController extends Controller
 		]);
 	}
 
+	/**
+	 * Show request detail view and list all repos searchied
+	 * @param $request
+	 * @return View
+	*/
 	public function search($request)
 	{
 		$request = (object) $request->getQueryParams();

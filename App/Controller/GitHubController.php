@@ -1,13 +1,14 @@
 <?php
 
 /*
- * This file is part of the leviframework to projetc webjump.
+ * This file is part of the leviframework to projetc git-hub-api.
  *
  * (c) Levi Costa <levi.costa1@gmail.com>
  *
  * For non-commercial use
  * 
  */
+
  
  /*
   * Set PHP heavily typed
@@ -40,6 +41,12 @@ class GitHubController
 		]);
 	}
 
+	/**
+	 * Connect to github for get access token
+	 * @param String $state
+	 * @param String $o_auth_code
+	 * @return String
+	*/
 	public function getAccessToken($state, $o_auth_code) 
 	{
 		return $token = $this->apiRequest(self::TOKEN_URL . '?' . http_build_query([
@@ -50,6 +57,11 @@ class GitHubController
 		]));
 	}
 
+	/**
+	 * create call for get response api get token github
+	 * @param String $access_token_url
+	 * @return String
+	*/
 	public function apiRequest($access_token_url)
 	{
 		$api_url = filter_var($access_token_url, FILTER_VALIDATE_URL) ? $access_token_url : self::GIT_HUB_API_URL . 'user?access_token_url=' .self::TOKEN_URL;
@@ -64,46 +76,98 @@ class GitHubController
 		return $response ? json_decode($response) : $response;
 	}
 
+	/**
+	 * Get client id is seted in class
+	 * @param void
+	 * @return String
+	*/
 	public function getClientId() : string
 	{
 		return self::CLIENT_ID;
 	}
 
+	/**
+	 * Get client secret is seted in class
+	 * @param void
+	 * @return String
+	*/
 	public function getClientSecret() : string
 	{
 		return self::CLIENT_SECRET;
 	}
 
+	/**
+	 * Get user data from api, not DB and not session
+	 * @param String $access_token_url
+	 * @return array
+	*/
 	public function getUserData($access_token_url)
 	{
 		return $this->sendCurl('https://api.github.com/user', $access_token_url);
 	}
 
+	/**
+	 * Get all repos from auth user
+	 * @param String $access_token_url
+	 * @return array
+	*/
 	public function getUserRepos($access_token_url)
 	{
 		return $this->sendCurl('https://api.github.com/users/levicosta201/repos', $access_token_url);
 	}
 
+	/**
+	 * Get details from specified repo
+	 * @param String $url
+	 * @param String $access_token_url
+	 * @return array
+	*/
 	public function getRepoDetail($url, $access_token_url)
 	{
 		return $this->sendCurl($url, $access_token_url);
 	}
 
+	/**
+	 * Get all branches from specified repo
+	 * @param String $url
+	 * @param String $access_token_url
+	 * @return array
+	*/
 	public function getRepoBranche($url, $access_token_url)
 	{
 		return $this->sendCurl($url, $access_token_url);
 	}
 
+	/**
+	 * Get details from specified branch
+	 * @param String $url
+	 * @param String $access_token_url
+	 * @return array
+	*/
 	public function getBrancheDetail($url, $access_token_url)
 	{
 		return $this->sendCurl($url, $access_token_url);
 	}
 
+	/**
+	 * Create query from search repo
+	 * @param String $url
+	 * @param String $access_token_url
+	 * @param String $query (use by search repo)
+	 * @param String $language
+	 * @return array
+	*/
 	public function searchRepo($url, $access_token_url, $query, $language)
 	{
 		return $this->sendCurl($url . '?q=' .$query . '+language:'.$language.'&sort=stars&order=desc', $access_token_url);
 	}
 
+	/**
+	 * Create curl request to connect in any endpoint from github api
+	 * @param String $url
+	 * @param String $access_token_url
+	 * @return Url Response
+	*/
 	private function sendCurl($url, $access_token_url)
 	{
 		$ch = curl_init();

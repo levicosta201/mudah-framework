@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the leviframework to projetc webjump.
+ * This file is part of the leviframework to projetc git-hub-api.
  *
  * (c) Levi Costa <levi.costa1@gmail.com>
  *
@@ -49,8 +49,14 @@ class LoginController extends Controller
 		$this->user_model = new UserModel;
 	}
 
+	/**
+	 * show view index login
+	 * @param void
+	 * @return View
+	*/
 	public function index()
 	{
+		//create secure hash to send gitihub API
 		$security_hash = hash('sha256', microtime(TRUE) . rand() . $_SERVER['REMOTE_ADDR']);
 		$user_data = getSession('user_data');
 
@@ -62,6 +68,11 @@ class LoginController extends Controller
 		return redirect('auth/dashboard/');
 	}
 
+	/**
+	 * Destroy user session
+	 * @param void
+	 * @return Redirect
+	*/
 	public function logout()
 	{
 		removeSession('code');
@@ -71,6 +82,11 @@ class LoginController extends Controller
 	    return redirect('');
 	}
 
+	/**
+	 * Receive data from github and validate status if ok the redirect to dashboard else return for login
+	 * @param Request $request
+	 * @return Redirect
+	*/
 	public function gitHubCallBackLogin($request)
 	{
 		$request = (object) $request->getQueryParams();
@@ -81,11 +97,6 @@ class LoginController extends Controller
 			return redirect('/');
 
 		$api_access_token = $this->git_hub_controller->getAccessToken($request->state, $request->code);
-		// dd([
-		// 	$code,
-		// 	$state,
-		// 	$api_access_token,
-		// ]);
 		$token_generated = $api_access_token->access_token;
 
 		if(!$token_generated)
@@ -98,6 +109,11 @@ class LoginController extends Controller
 		return redirect('auth/dashboard/');
 	}
 
+	/**
+	 * Store user data in session for more fast loading pages
+	 * @param String $access_token
+	 * @return void
+	*/
 	public function storeUserDataInSession($access_token)
 	{
 		$user_data = $this->git_hub_controller->getUserData($access_token);
@@ -105,6 +121,11 @@ class LoginController extends Controller
 		saveSession('user_data', $user_data);
 	}
 
+	/**
+	 * Validate if user is registered the continue else store user data for first access
+	 * @param String $user_data
+	 * @return void
+	*/
 	public function saveOrUpdateUser($user_data)
 	{
 		$user_by_id = $this->user_model->getUserDataById($user_data->id);

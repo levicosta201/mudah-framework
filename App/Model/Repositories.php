@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the leviframework to projetc webjump.
+ * This file is part of the leviframework to projetc git-hub-api.
  *
  * (c) Levi Costa <levi.costa1@gmail.com>
  *
@@ -30,6 +30,16 @@ class Repositories extends Connection
 		parent::__construct();
 	}
 
+	/**
+	 * Save repositorie 
+	 * @param int github_id
+	 * @param string name
+	 * @param string url
+	 * @param string privacity
+	 * @param string language
+	 * @param string description
+	 * @return query response
+	*/
 	public function saveRespoitorie(string $name, string $url, string $privacity, string $language, string $description)
 	{
 		$insert = $this->db->insert([
@@ -43,12 +53,23 @@ class Repositories extends Connection
 		return $insert->execute();
 	}
 
+	/**
+	 * Update repositorie using id with reference
+	 * @param int id
+	 * @param array params
+	 * @return query response
+	*/
 	public function updateRepositorie(int $id, array $params)
 	{
 		$data = $this->db->update($params)->table(self::$table)->where('id', '=', $id)->execute();
 		return $data;
 	}
 
+	/**
+	 * Get user using url with reference
+	 * @param int url (base64 encoded)
+	 * @return query response
+	*/
 	public function getRepositorieByUrl($url)
 	{
 		$data = $this->db->select()->from(self::$table)->where('url', '=', $url)->execute()->fetch();

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the leviframework to projetc webjump.
+ * This file is part of the leviframework to projetc git-hub-api.
  *
  * (c) Levi Costa <levi.costa1@gmail.com>
  *
