@@ -11,6 +11,7 @@
 
 use \App\Controller\DashboardController as DashboardController;
 use \App\Controller\LoginController as LoginController;
+use \App\Controller\RepositorieController as RepositorieController;
 
 use Zend\Diactoros\ServerRequestFactory;
 use function FastRoute\simpleDispatcher;
@@ -58,6 +59,11 @@ $containerBuilder->addDefinitions([
         'Response' => function() {
             return new Response();
         },
+    RepositorieController::class => create(RepositorieController::class)
+        ->constructor(get('Response')),
+        'Response' => function() {
+            return new Response();
+        },
 ]);
 
 $container = $containerBuilder->build();
@@ -68,10 +74,36 @@ $container = $containerBuilder->build();
 */ 
 $routes = simpleDispatcher(function (RouteCollector $route) {    
     //Routes for Dashboard
-    $route->get('/', [LoginController::class, 'index']);
-    $route->get('/github/callback/', [LoginController::class, 'gitHubCallBackLogin']);
+    $route->get('/', [
+        LoginController::class, 
+        'index',
+    ]);
 
-    $route->get('/auth/dashboard/', [DashboardController::class, 'index']);
+    $route->get('/logout', [
+        LoginController::class, 
+        'logout',
+    ]);
+
+    $route->get('/github/callback/', [
+        LoginController::class, 
+        'gitHubCallBackLogin',
+    ]);
+
+    $route->get('/auth/dashboard/', [
+        DashboardController::class, 
+        'index',
+    ]);
+
+    $route->get('/auth/repo/detail/', [
+        RepositorieController::class,
+        'detail',
+    ]);
+
+    $route->get('/auth/search/', [
+        DashboardController::class, 
+        'search',
+    ]);
+
 });
 
 $middlewareQueue[] = new FastRoute($routes);
