@@ -55,6 +55,9 @@ class DashboardController extends Controller
 		$this->code = getSession('code');
 		$this->user_data = getSession('user_data');
 		$this->repositories_model = new RepositoriesModel;
+
+		if(!$this->user_data or $this->user_data == "")
+			return redirect('');
 	}
 
 	public function index()
