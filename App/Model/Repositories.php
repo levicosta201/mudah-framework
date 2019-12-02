@@ -49,9 +49,9 @@ class Repositories extends Connection
 		return $data;
 	}
 
-	public function getRepositorieById($id)
+	public function getRepositorieByUrl($url)
 	{
-		$data = $this->db->select()->from(self::$table)->where('id', '=', $id)->execute()->fetch();
+		$data = $this->db->select()->from(self::$table)->where('url', '=', $url)->execute()->fetch();
 		return $data;
 	}
 }
