@@ -22,14 +22,12 @@
         "phpunit/phpunit" : "*"
     },
     "autoload": {
-        "psr-0" : {
-            "App\\Unit": "src/"
-        },
         "psr-4" : {
             "App\\Controller\\": "App/Controller/",
             "App\\Model\\": "App/Model/",
             "App\\Core\\": "App/Core",
-            "App\\Dao\\": "App/Dao"
+            "App\\Dao\\": "App/Dao",
+            "App\\Tests\\": "App/tests/"
         },
         "files": [
             "App/Core/Helper.php"

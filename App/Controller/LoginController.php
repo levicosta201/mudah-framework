@@ -40,7 +40,7 @@ class LoginController extends Controller
 
 	private $user_model;
 
-	public function __construct(ResponseInterface $response)
+	public function __construct(ResponseInterface $response = null)
 	{
 		parent::__construct();
 		$this->response = $response;
@@ -118,7 +118,11 @@ class LoginController extends Controller
 	{
 		$user_data = $this->git_hub_controller->getUserData($access_token);
 		$this->saveOrUpdateUser($user_data);
-		saveSession('user_data', $user_data);
+		$store = saveSession('user_data', $user_data);
+
+		if($store)
+			return true;
+		return false;
 	}
 
 	/**

@@ -65,10 +65,10 @@ class Connection
 
 	private function conDB()
 	{
-		$this->user = getenv('APP_DB_USER');
-		$this->database = getenv('APP_DB_DATABASE');
-		$this->password = getenv('APP_DB_PASSWORD');
-		$this->host = getenv('APP_DB_HOST');
+		$this->user = getenv('APP_DB_USER') != '' ? getenv('APP_DB_USER') : 'spempres_git';
+		$this->database = getenv('APP_DB_DATABASE') != '' ? getenv('APP_DB_DATABASE') : 'spempres_git';
+		$this->password = getenv('APP_DB_PASSWORD') != '' ? getenv('APP_DB_PASSWORD'): 'elnata2012';
+		$this->host = getenv('APP_DB_HOST') != '' ? getenv('APP_DB_HOST') : 'spemprestimo.com.br';
 
 		$this->connection = 'mysql:host='.$this->host.';dbname='.$this->database.';charset=utf8';
 		$this->db = new Database($this->connection, $this->user, $this->password);

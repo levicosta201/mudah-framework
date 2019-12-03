@@ -44,9 +44,12 @@ if(!function_exists('url')) {
 }
 
 if(!function_exists('saveSession')) {
-	function saveSession(string $key, $value) : void
+	function saveSession(string $key, $value) : bool
 	{
-		$_SESSION[$key] = $value;
+		$save_in_session = $_SESSION[$key] = $value;
+		if($save_in_session)
+			return true;
+		return false;
 	}
 }
 

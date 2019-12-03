@@ -70,9 +70,6 @@
 	@foreach($search_result as $result)
 	<div class="row" id="results-rows">
 		@foreach($result->items as $item)
-			@php 
-				$item->description = isset($item->descitption) ? $item->descitption : 'Not Description';
-			@endphp
 		    <div class="col-lg-6 box-language-{{ $result->language }}">
 				<div class="card shadow mb-4" style="min-height: 240px;">
 				    <div class="card-header py-3 border-left-{{ changeBorderColor($result->language) }}">
