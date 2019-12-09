@@ -1,5 +1,7 @@
 <?php
-
+declare(strict_types=1);
+ob_start();
+session_start();
 /*
  * This file is part of the leviframework to projetc webjump.
  *
