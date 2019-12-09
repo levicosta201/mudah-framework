@@ -18,7 +18,7 @@ session_start();
   * @var String $param
   */
 if(!function_exists('url')) {
-	function url($param)
+	function url($param) : string
 	{
 		if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') 
 		    $link = "https"; 
@@ -52,7 +52,7 @@ if(!function_exists('getFileData')){
 }
 
 if(!function_exists('generateRandFileName')) {
-	function generateRandFileName()
+	function generateRandFileName() : string
 	{
 		return md5(uniqid(rand(), true));
 	}
@@ -76,8 +76,29 @@ if(!function_exists('uploadFile')) {
 }
 
 if(!function_exists('moneyToReal')) {
-	function moneyToReal($value)
+	function moneyToReal($value) : string
 	{
 		return number_format($value, 2, ',', '.');
+	}
+}
+
+if(!function_exists('saveSession')) {
+	function saveSession($key, $value) : void
+	{
+		$_SESSION[$key] = $value;
+	}
+}
+
+if(!function_exists('getSession')) {
+	function getSession($key) : string
+	{
+		return $_SESSION[$key];
+	}
+}
+
+if(!function_exists('stringToXml')) {
+	function stringToXml($xml)
+	{
+		return simplexml_load_string($xml);
 	}
 }
