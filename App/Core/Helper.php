@@ -92,7 +92,7 @@ if(!function_exists('saveSession')) {
 if(!function_exists('getSession')) {
 	function getSession($key) : string
 	{
-		return $_SESSION[$key];
+		return $_SESSION[$key] ?? '';
 	}
 }
 
