@@ -82,7 +82,7 @@ class IndexController extends Controller
 		    "Connection: keep-alive",
 		    "Content-Length: 131",
 		    "Content-Type: application/html+xml",
-		    "Cookie: JSESSIONID=KfnUMQPfEDxw6bwK948DILDVVu9sJhfr-Q2Jb2yT.snk-app-treina02",
+		    "Cookie: JSESSIONID=".$this->getSessionIdFromSession().".snk-app-treina02",
 		    "Host: innovation.fmcdatacom.com.br:8332",
 		    "Postman-Token: 1cdc67e9-de7f-480f-80b7-70f24ff73d5f,f6a8a0da-d7c7-478b-be48-e73964da0ec5",
 		    "User-Agent: PostmanRuntime/7.20.1",
@@ -91,8 +91,8 @@ class IndexController extends Controller
 		));
 
 		$response = json_decode(utf8_encode(curl_exec($curl)));
-
 		$err = curl_error($curl);
+		
 		if ($err) 
 		    return json_encode([
 		        'error' => $err,
@@ -134,10 +134,7 @@ class IndexController extends Controller
 		));
 
 		$response = curl_exec($curl);
-		print("CURL RESPONSE: " + $response);
 		$err = curl_error($curl);
-		print("CURL ERROR: " + $err);
-
 		curl_close($curl);
 
 		if ($err) 
