@@ -208,6 +208,95 @@
     </div>
 
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script>
+
+    var productDescription = $("#productDescription");
+    var product = $("#product");
+    var priceHome = $("#priceHome");
+    var titleSEO = $("#titleSEO");
+    var urlSEO = $("#urlSEO");
+    var codeForSearch = $("#codeForSearch");
+    var loading = $(".loading");
+
+    checkTheme();
+
+    codeForSearch.keyup(function(e){
+        e.preventDefault();
+        var inputLenght = $(this).val().length;
+
+        if(inputLenght == 4) {
+            getProduct();
+        }        
+    });
+
+    var getProduct = function() {
+        $.ajax({
+            url: "{{ url('/api/product/get?product_id=') }}" +codeForSearch.val(),
+            type: "GET",
+            dataType: "json",
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function() {
+                console.log('loading ajax');
+                loading.removeClass('hide');
+            },
+            success: function (data) {
+                console.log('sucesso ajax');
+                console.log(data.rows);
+                // console.log(data['fieldsMetadata']);
+                // console.log(data['rows']);
+                productDescription.val(data.rows[0][10]);
+                priceHome.val("R$ " + data.rows[0][17].toFixed(2));
+                titleSEO.val(data.rows[0][5]);
+                urlSEO.val(data.rows[0][7]);
+                product.val(data.rows[0][1])
+                //productDescription.val(data[1]);
+                // for(var i = 0; i < data.length; i++) {
+                //     console.log(data[i]);
+                // }
+            },
+            error: function (data) {
+                console.log('erro ajax');
+                console.log(data);
+                loading.addClass('hide');
+            },
+            complete: function(){
+                loading.addClass('hide');
+                console.log('completou ajax');
+            }
+        });
+    }
+
+    function changeThemeColor(theme, e) {
+        
+        let acitveTheme = localStorage.getItem("acitveTheme");
+        if(e)
+            e.preventDefault();
+
+        if(acitveTheme == null) {
+            $(".bg-warning").removeClass("bg-warning").addClass("bg-warning");
+            localStorage.setItem("acitveTheme", "bg-warning");
+        } else {
+            $("." + acitveTheme).removeClass(acitveTheme).addClass(theme);
+            localStorage.setItem("acitveTheme", theme);
+        }        
+    }
+
+    function checkTheme() {
+        let acitveTheme = localStorage.getItem("acitveTheme");
+        console.log(acitveTheme);
+        if(acitveTheme == null)
+            //define default theme
+            changeThemeColor();
+        else {
+            $(".bg-warning").removeClass("bg-warning").addClass(acitveTheme);
+            changeThemeColor(acitveTheme);
+        }
+    }
+
+</script>
 </body>
 
 </html>
