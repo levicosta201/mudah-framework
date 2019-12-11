@@ -57,7 +57,6 @@ class IndexController extends Controller
 	private function getSessionId()
 	{
 		$xml_raw = '<?xml version="1.0" encoding="ISO-8859-1" ?><serviceRequest><requestBody><NOMUSU>teste</NOMUSU><INTERNO>innovation</INTERNO></requestBody></serviceRequest>';
-		
 		$response = simplexml_load_string($this->requestData('http://innovation.fmcdatacom.com.br:8332/mge/service.sbr?serviceName=MobileLoginSP.login', $xml_raw));
 		$this->saveSessionId($response->responseBody->jsessionid);
 		return $response->responseBody->jsessionid;
