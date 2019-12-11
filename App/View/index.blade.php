@@ -46,22 +46,20 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			                   Alterar Tema
 		                    </a>
-                            <ul class="dropdown-menu main-menubox" aria-labelledby="navbarDropdownMenuLink">
+                            <ul class="dropdown-menu main-menubox" aria-labelledby="navbarDropdownMenuLink" style="margin-top: -40px !important;">
                                 <li>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-square-full" style="color: black;"></i> Preto</a>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-square-full" style="color: blue;"></i> Azul</a>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-square-full" style="color: orange;"></i> Laranja</a>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-square-full" style="color: green;"></i> Verde</a>
+                                    <a class="dropdown-item" href="#" onclick="changeThemeColor('bg-dark', event)"><i class="fas fa-square-full" style="color: black;"></i> Preto</a>
+                                    <a class="dropdown-item" href="#" onclick="changeThemeColor('bg-info', event)"><i class="fas fa-square-full" style="color: blue;"></i> Azul</a>
+                                    <a class="dropdown-item" href="#" onclick="changeThemeColor('bg-warning', event)"><i class="fas fa-square-full" style="color: orange;"></i> Laranja</a>
+                                    <a class="dropdown-item" href="#" onclick="changeThemeColor('bg-success', event)"><i class="fas fa-square-full" style="color: green;"></i> Verde</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item">
                             <form class="form-inline">
                                 <div class="form-group mx-sm-3 mb-2">
-                                    <label for="inputPassword2" class="sr-only">Password</label>
-                                    <input type="password" class="form-control" id="inputPassword2" placeholder="Digite o código do produto" maxlength="4">
+                                    <input type="number" class="form-control" id="codeForSearch" placeholder="Digite o código do produto" maxlength="4">
                                 </div>
-                                <button type="submit" class="btn btn-warning mb-2">Buscar <i class="fas fa-search"></i></button>
                             </form>
                         </li>
                     </ul>
@@ -75,12 +73,12 @@
                 <form>
                     <div class="form-row align-items-center">
                         <div class="col-11">
-                            <label class="sr-only" for="inlineFormInputGroup">Descrição Produto</label>
+                            <label class="sr-only" for="productDescription">Descrição Produto</label>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-warning" style="color: #FFF">Descrição Produto</div>
                                 </div>
-                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="" readonly>
+                                <input type="text" class="form-control" id="productDescription" placeholder="" readonly>
                             </div>
                         </div>
                         <div class="col-1">
@@ -92,12 +90,12 @@
 							</div>
                         </div>
                         <div class="col-11">
-                            <label class="sr-only" for="inlineFormInputGroup">Preço Home</label>
+                            <label class="sr-only" for="priceHome">Preço Home</label>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-warning" style="color: #FFF">Preço Home</div>
                                 </div>
-                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="" readonly>
+                                <input type="text" class="form-control" id="priceHome" placeholder="" readonly>
                             </div>
                         </div>
                         <div class="col-1">
@@ -109,12 +107,12 @@
 							</div>
                         </div>
                         <div class="col-11">
-                            <label class="sr-only" for="inlineFormInputGroup">Título SEO</label>
+                            <label class="sr-only" for="titleSEO">Título SEO</label>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-warning" style="color: #FFF">Título SEO</div>
                                 </div>
-                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="" readonly>
+                                <input type="text" class="form-control" id="titleSEO" placeholder="" readonly>
                             </div>
                         </div>
                         <div class="col-1">
@@ -126,12 +124,12 @@
 							</div>
                         </div>
                         <div class="col-11">
-                            <label class="sr-only" for="inlineFormInputGroup">URL SEO</label>
+                            <label class="sr-only" for="urlSEO">URL SEO</label>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-warning" style="color: #FFF">URL SEO</div>
                                 </div>
-                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="" readonly>
+                                <input type="text" class="form-control" id="urlSEO" placeholder="" readonly>
                             </div>
                         </div>
                         <div class="col-1">
@@ -143,12 +141,12 @@
 							</div>
                         </div>        
                         <div class="col-11">
-                            <label class="sr-only" for="inlineFormInputGroup">Produto</label>
+                            <label class="sr-only" for="product">Produto</label>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-warning" style="color: #FFF">Produto</div>
                                 </div>
-                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="" readonly>
+                                <input type="text" class="form-control" id="product" placeholder="" readonly>
                             </div>
                         </div>
                         <div class="col-1">
