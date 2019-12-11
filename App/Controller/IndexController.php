@@ -49,11 +49,10 @@ class IndexController extends Controller
 
 	public function index()
 	{		
-		if(!$this->checkSessionId()) 
-			$this->validateSession();
 
-		dd($this->getProductData(60));
-		
+		if(!$this->checkSessionId())
+			$this->validateSession();
+		dd($this->getProductData(40));
 		return $this->blade->make('index')->with([
 			'session_id' => $this->getSessionId(),
 		]);
@@ -68,9 +67,9 @@ class IndexController extends Controller
 
 	private function getProductData(int $product_code) : string
 	{
-		$xml_raw = '{"serviceName":"DbExplorerSP.executeQuery","requestBody":{"sql":"Select * From [sankhya].[VW_DadosProduto] Where codprod = 0060"}}';
+		$xml_raw = '{"requestBody":{"sql":"Select * From [sankhya].[VW_DadosProduto] Where codprod = 0060"}}';
 		
-		return $this->requestData('http://innovation.fmcdatacom.com.br:8332/mge/service.sbr?serviceName=DbExplorerSP.executeQuery&mgeSession='.$this->getSessionId(), $xml_raw);
+		return $this->requestData('http://innovation.fmcdatacom.com.br:8332/mge/service.sbr?serviceName=DbExplorerSP.executeQuery&mgeSession='. $this->getSessionId(), addslashes($xml_raw));
 	}
 
 	private function requestData(string $url, string $raw) : string
@@ -78,22 +77,23 @@ class IndexController extends Controller
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => $url,
-		  CURLOPT_RETURNTRANSFER => true,
-		  CURLOPT_ENCODING => "",
-		  CURLOPT_MAXREDIRS => 10,
-		  CURLOPT_TIMEOUT => 30,
-		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		  CURLOPT_CUSTOMREQUEST => "POST",
-		  CURLOPT_POSTFIELDS => $raw,
-		  CURLOPT_HTTPHEADER => array(
-		    "Cache-Control: no-cache",
-		    "Content-Type: application/xhtml+xml",
-		  ),
+			CURLOPT_PORT => "8332",
+		    CURLOPT_URL => $url,
+		    CURLOPT_RETURNTRANSFER => true,
+		    CURLOPT_ENCODING => "",
+		    CURLOPT_MAXREDIRS => 10,
+		    CURLOPT_TIMEOUT => 30,
+		    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		    CURLOPT_CUSTOMREQUEST => "POST",
+		    CURLOPT_POSTFIELDS => $raw,
+		    CURLOPT_HTTPHEADER => array(
+		        "cache-control: no-cache",
+			    "content-type: text/xml",
+			    "postman-token: 1c4a383b-51d9-5e08-b457-7184be176fec"
+		    ),
 		));
 
 		$response = curl_exec($curl);
-
 		$err = curl_error($curl);
 		dd([
 			$response,
@@ -110,22 +110,22 @@ class IndexController extends Controller
 	private function checkSessionId() : bool 
 	{
 		$get_session_id = $this->getSessionId();
-		
-		if($get_session_id !== null or $get_session_id !== '')
+
+		if($get_session_id != null or $get_session_id != '')
 			return true;
 		return false;
 	}
 
 	private function validateSession() : void
 	{
-		saveSession('session_id', '');
 		$auto_login = stringToXml($this->autoLogin());
 		$session_id = (string) $auto_login->responseBody->jsessionid;				
 		saveSession('session_id', $session_id);
+		$this->session_id = $session_id;
 	}
 
 	private function getSessionId() : string
 	{
-		return getSession('session_id') ?? '';
+		return getSession('session_id') ? getSession('session_id') : $this->session_ids;
 	}
 }
