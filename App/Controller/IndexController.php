@@ -117,6 +117,7 @@ class IndexController extends Controller
 		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		  CURLOPT_CUSTOMREQUEST => "POST",
 		  CURLOPT_POSTFIELDS => $raw,
+		  CURLOPT_ENCODING => 'UTF-8',
 		  CURLOPT_HTTPHEADER => array(
 		    "Accept: */*",
 		    "Accept-Encoding: gzip, deflate",
