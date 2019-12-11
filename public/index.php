@@ -10,8 +10,7 @@
  */
 
 use \App\Controller\IndexController as IndexController;
-use \App\Controller\LogsController as LogsController;
-use \App\Controller\CategoriesController as CategoriesController;
+use \App\Controller\ApiController as ApiController;
 
 use Zend\Diactoros\ServerRequestFactory;
 use function FastRoute\simpleDispatcher;
@@ -54,6 +53,11 @@ $containerBuilder->addDefinitions([
         'Response' => function() {
             return new Response();
         },
+    ApiController::class => create(ApiController::class)
+        ->constructor(get('Response')),
+        'Response' => function() {
+            return new Response();
+        },
 ]);
 
 $container = $containerBuilder->build();
@@ -65,6 +69,7 @@ $container = $containerBuilder->build();
 $routes = simpleDispatcher(function (RouteCollector $route) {    
     //Routes for Dashboard
     $route->get('/', [IndexController::class, 'index']);
+    $route->get('/api/product/get', [ApiController::class, 'getProductData']);
 });
 
 $middlewareQueue[] = new FastRoute($routes);
