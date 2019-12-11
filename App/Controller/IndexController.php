@@ -133,8 +133,9 @@ class IndexController extends Controller
 		));
 
 		$response = curl_exec($curl);
-
+		print("CURL RESPONSE: " + $response);
 		$err = curl_error($curl);
+		print("CURL ERROR: " + $err);
 
 		curl_close($curl);
 
