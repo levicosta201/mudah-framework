@@ -68,8 +68,8 @@ class IndexController extends Controller
 
 	private function getProductData(int $product_code) : string
 	{
-		$xml_raw = '{"serviceName":"DbExplorerSP.executeQuery","requestBody":{"sql":"Select * From [sankhya].[VW_DadosProduto]\nWhere codprod = '.$product_code.'"}}';
-		dd($this->getSessionId());
+		$xml_raw = '{"serviceName":"DbExplorerSP.executeQuery","requestBody":{"sql":"Select * From [sankhya].[VW_DadosProduto] Where codprod = 0060"}}';
+		
 		return $this->requestData('http://innovation.fmcdatacom.com.br:8332/mge/service.sbr?serviceName=DbExplorerSP.executeQuery&mgeSession='.$this->getSessionId(), $xml_raw);
 	}
 
@@ -95,7 +95,10 @@ class IndexController extends Controller
 		$response = curl_exec($curl);
 
 		$err = curl_error($curl);
-
+		dd([
+			$response,
+			$err,
+		]);
 		curl_close($curl);
 
 		if ($err)
