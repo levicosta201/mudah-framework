@@ -40,6 +40,11 @@ class IndexController extends Controller
      */
 	private $session_id;
 
+	/**
+     * Return a view with form to search product
+     *
+     * @return view
+     */
 	public function index()
 	{		
 		$this->getSessionId();
