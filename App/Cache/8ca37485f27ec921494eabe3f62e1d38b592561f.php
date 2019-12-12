@@ -74,18 +74,18 @@
                 <form>
                     <div class="form-row align-items-center">
                         <div class="col-11">
-                            <label class="sr-only" for="productDescription">Descrição Produto</label>
+                            <label class="sr-only" for="productDescription">Descrição do Produto</label>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text bg-warning" style="color: #FFF">Descrição Produto</div>
+                                    <div class="input-group-text bg-warning" style="color: #FFF">Descrição do Produto</div>
                                 </div>
-                                <input type="text" class="form-control" id="productDescription" placeholder="" readonly>
+                                <input type="text" class="form-control" id="productDescription" data-name="Descrição do Produto" placeholder="" readonly>
                             </div>
                         </div>
                         <div class="col-1">
                             <div class="form-check">
-							  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-							  <label class="form-check-label" for="exampleRadios1">
+							  <input class="form-check-input" type="radio" name="radioValidate" value="productDescription">
+							  <label class="form-check-label" for="checkProductDescription">
 							    Selecionar
 							  </label>
 							</div>
@@ -96,12 +96,12 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-warning" style="color: #FFF">Preço Home</div>
                                 </div>
-                                <input type="text" class="form-control" id="priceHome" placeholder="" readonly>
+                                <input type="text" class="form-control" id="priceHome" data-name="Preço Home" placeholder="" readonly>
                             </div>
                         </div>
                         <div class="col-1">
                             <div class="form-check">
-							  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+							  <input class="form-check-input" type="radio" name="radioValidate" value="priceHome">
 							  <label class="form-check-label" for="exampleRadios1">
 							    Selecionar
 							  </label>
@@ -113,12 +113,12 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-warning" style="color: #FFF">Título SEO</div>
                                 </div>
-                                <input type="text" class="form-control" id="titleSEO" placeholder="" readonly>
+                                <input type="text" class="form-control" id="titleSEO" data-name="Titulo SEO" placeholder="" readonly>
                             </div>
                         </div>
                         <div class="col-1">
                             <div class="form-check">
-							  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+							  <input class="form-check-input" type="radio" name="radioValidate" value="titleSEO">
 							  <label class="form-check-label" for="exampleRadios1">
 							    Selecionar
 							  </label>
@@ -130,12 +130,12 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-warning" style="color: #FFF">URL SEO</div>
                                 </div>
-                                <input type="text" class="form-control" id="urlSEO" placeholder="" readonly>
+                                <input type="text" class="form-control" id="urlSEO" data-name="URL SEO" placeholder="" readonly>
                             </div>
                         </div>
                         <div class="col-1">
                             <div class="form-check">
-							  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+							  <input class="form-check-input" type="radio" name="radioValidate" value="urlSEO">
 							  <label class="form-check-label" for="exampleRadios1">
 							    Selecionar
 							  </label>
@@ -147,12 +147,12 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-warning" style="color: #FFF">Produto</div>
                                 </div>
-                                <input type="text" class="form-control" id="product" placeholder="" readonly>
+                                <input type="text" class="form-control" id="product" data-name="Produto" placeholder="" readonly>
                             </div>
                         </div>
                         <div class="col-1">
                             <div class="form-check">
-							  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+							  <input class="form-check-input" type="radio" name="radioValidate" value="product">
 							  <label class="form-check-label" for="exampleRadios1">
 							    Selecionar
 							  </label>
@@ -177,7 +177,7 @@
 		                                <div class="input-group-prepend">
 		                                    <div class="input-group-text bg-warning" style="color: #FFF">Campo Selecionado</div>
 		                                </div>
-		                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="" readonly>
+		                                <input type="text" class="form-control" id="selectedInput" placeholder="" readonly>
 		                            </div>
 		                        </div>
 		                        <div class="col-4">
@@ -186,7 +186,7 @@
 		                                <div class="input-group-prepend">
 		                                    <div class="input-group-text bg-warning" style="color: #FFF">Referência</div>
 		                                </div>
-		                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="" readonly>
+		                                <input type="text" class="form-control" id="referenceInput" placeholder="" readonly>
 		                            </div>
 		                        </div>
 		                        <div class="col-12">
@@ -195,7 +195,7 @@
 		                                <div class="input-group-prepend">
 		                                    <div class="input-group-text bg-warning" style="color: #FFF">Informação do Campo</div>
 		                                </div>
-		                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="" readonly>
+		                                <input type="text" class="form-control" id="infoInput" placeholder="" readonly>
 		                            </div>
 		                        </div>
 		                    </div>
@@ -210,6 +210,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script>
 
+    //inputs
     var productDescription = $("#productDescription");
     var product = $("#product");
     var priceHome = $("#priceHome");
@@ -218,7 +219,34 @@
     var codeForSearch = $("#codeForSearch");
     var loading = $(".loading");
 
+    //inputs validations
+    var selectedInput = $("#selectedInput");
+    var referenceInput = $("#referenceInput");
+    var infoInput = $("#infoInput");
+
+    //checks
+    var checkProductDescription = $("#checkProductDescription");
+
+    //object
+    var productReference = '';
+
+    //validate if exists default theme in memory
     checkTheme();
+
+    $('input[type=radio][name=radioValidate]').change(function() {
+        
+        let input = $(this);
+        let input_id = $("#" + input.val());
+        let input_val = input_id.val();
+        let input_name = input_id.data('name');
+
+        console.log(input_val + " > " + input_name + " > " + productReference);
+        
+        if(input_id.val() === '')
+            return showBasicAlert('Ooops...', 'Campo em branco 😓 Voce deve selecionar um campo preenchido!');
+
+        setValidation(input_name, productReference, input_val);
+    });
 
     codeForSearch.keyup(function(e){
         e.preventDefault();
@@ -238,34 +266,31 @@
             contentType: false,
             processData: false,
             beforeSend: function() {
-                console.log('loading ajax');
                 loading.removeClass('hide');
             },
             success: function (data) {
-                console.log('sucesso ajax');
-                console.log(data.rows);
-                // console.log(data['fieldsMetadata']);
-                // console.log(data['rows']);
-                productDescription.val(data.rows[0][10]);
+                productDescription.val(data.rows[0][11]);
                 priceHome.val("R$ " + data.rows[0][17].toFixed(2));
                 titleSEO.val(data.rows[0][5]);
                 urlSEO.val(data.rows[0][7]);
-                product.val(data.rows[0][1])
-                //productDescription.val(data[1]);
-                // for(var i = 0; i < data.length; i++) {
-                //     console.log(data[i]);
-                // }
+                product.val(data.rows[0][2]);
+
+                //store if necessary to access later
+                productReference = data.rows[0][3]
             },
             error: function (data) {
-                console.log('erro ajax');
-                console.log(data);
                 loading.addClass('hide');
             },
             complete: function(){
                 loading.addClass('hide');
-                console.log('completou ajax');
             }
         });
+    }
+
+    function setValidation(selectedInputVal, referenceInputVal, infoInputVal) {
+        selectedInput.val(selectedInputVal);
+        referenceInput.val(referenceInputVal);
+        infoInput.val(infoInputVal);
     }
 
     function changeThemeColor(theme, e) {
@@ -293,6 +318,14 @@
             $(".bg-warning").removeClass("bg-warning").addClass(acitveTheme);
             changeThemeColor(acitveTheme);
         }
+    }
+
+    function showBasicAlert(title, message, type) {
+        Swal.fire(
+            title,
+            message,
+            type
+        )
     }
 
 </script>

@@ -20,3 +20,5 @@
 [2019-12-11 20:46:36.356] [exthost] [info] eager extensions activated
 [2019-12-11 21:05:52.621] [exthost] [info] ExtensionService#_doActivateExtension vscode.php-language-features {"startup":false,"extensionId":{"value":"vscode.php-language-features","_lower":"vscode.php-language-features"},"activationEvent":"onLanguage:php"}
 [2019-12-11 21:05:52.622] [exthost] [info] ExtensionService#loadCommonJSModule file:///usr/share/code/resources/app/extensions/php-language-features/dist/phpMain
+[2019-12-11 21:36:50.406] [exthost] [info] ExtensionService#_doActivateExtension vscode.css-language-features {"startup":false,"extensionId":{"value":"vscode.css-language-features","_lower":"vscode.css-language-features"},"activationEvent":"onLanguage:css"}
+[2019-12-11 21:36:50.406] [exthost] [info] ExtensionService#loadCommonJSModule file:///usr/share/code/resources/app/extensions/css-language-features/client/dist/cssMain
