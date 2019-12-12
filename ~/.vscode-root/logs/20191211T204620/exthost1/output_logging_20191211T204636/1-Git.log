@@ -1132,3 +1132,29 @@ Open repository: /var/www/mudah-framework
 > git for-each-ref --format %(refname) %(objectname) --sort -committerdate
 > git remote --verbose
 > git config --get commit.template
+> git show :App/View/index.blade.php
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse innovation-brindes
+> git rev-parse --symbolic-full-name innovation-brindes@{u}
+> git rev-list --left-right innovation-brindes...refs/remotes/origin/innovation-brindes
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse innovation-brindes
+> git rev-parse --symbolic-full-name innovation-brindes@{u}
+> git rev-list --left-right innovation-brindes...refs/remotes/origin/innovation-brindes
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :App/Controller/IndexController.php
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse innovation-brindes
+> git rev-parse --symbolic-full-name innovation-brindes@{u}
+> git rev-list --left-right innovation-brindes...refs/remotes/origin/innovation-brindes
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
