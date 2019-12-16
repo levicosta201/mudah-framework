@@ -63,6 +63,14 @@
                                 </div>
                             </form>
                         </li>
+                        <li class="nav-item">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-warning" style="color: #FFF">Ativo Site?</div>
+                                </div>
+                                <input type="text" class="form-control" id="ativoSite" data-name="Ativo Site" placeholder="" readonly>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -73,6 +81,23 @@
             <div class="col-12">
                 <form>
                     <div class="form-row align-items-center">
+                        <div class="col-11">
+                            <label class="sr-only" for="product">Produto</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text bg-warning" style="color: #FFF">Produto</div>
+                                </div>
+                                <input type="text" class="form-control" id="product" data-name="Produto" placeholder="" readonly>
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check">
+							  <input class="form-check-input" type="radio" name="radioValidate" value="product">
+							  <label class="form-check-label" for="exampleRadios1">
+							    Selecionar
+							  </label>
+							</div>
+                        </div>
                         <div class="col-11">
                             <label class="sr-only" for="productDescription">Descrição do Produto</label>
                             <div class="input-group mb-2">
@@ -140,23 +165,6 @@
 							    Selecionar
 							  </label>
 							</div>
-                        </div>        
-                        <div class="col-11">
-                            <label class="sr-only" for="product">Produto</label>
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text bg-warning" style="color: #FFF">Produto</div>
-                                </div>
-                                <input type="text" class="form-control" id="product" data-name="Produto" placeholder="" readonly>
-                            </div>
-                        </div>
-                        <div class="col-1">
-                            <div class="form-check">
-							  <input class="form-check-input" type="radio" name="radioValidate" value="product">
-							  <label class="form-check-label" for="exampleRadios1">
-							    Selecionar
-							  </label>
-							</div>
                         </div>
                     </div>
                 </form>
@@ -217,6 +225,7 @@
     var titleSEO = $("#titleSEO");
     var urlSEO = $("#urlSEO");
     var codeForSearch = $("#codeForSearch");
+    var ativoSite = $("#ativoSite");
     var loading = $(".loading");
 
     //inputs validations
@@ -248,11 +257,16 @@
 
     codeForSearch.keyup(function(e){
         e.preventDefault();
+        
         var inputLenght = $(this).val().length;
+        var keyPressed = e.which;
 
-        if(inputLenght == 4) {
-            getProduct();
-        }        
+        if(isArrowPressed(keyPressed)) {
+            let normalizedVal = parseInt(normalizeInput($(this).val()));
+            $(this).val(normalizedVal);
+        }
+        if(inputLenght == 4)
+            getProduct();    
     });
 
     var getProduct = function() {
@@ -267,11 +281,12 @@
                 loading.removeClass('hide');
             },
             success: function (data) {
-                productDescription.val(data.rows[0][11]);
-                priceHome.val("R$ " + data.rows[0][17].toFixed(2));
-                titleSEO.val(data.rows[0][5]);
-                urlSEO.val(data.rows[0][7]);
-                product.val(data.rows[0][2]);
+                productDescription.val(data.rows[0][10] !== null ?  data.rows[0][10] : '');
+                priceHome.val("R$ " + data.rows[0][16] !== null ? data.rows[0][16].toFixed(2) : '');
+                titleSEO.val(data.rows[0][4]);
+                urlSEO.val(data.rows[0][6]);
+                product.val(data.rows[0][1]);
+                ativoSite.val(isActive(data.rows[0][12]));
 
                 //store if necessary to access later
                 productReference = data.rows[0][3]
@@ -292,12 +307,16 @@
         infoInput.val(infoInputVal);
     }
 
+    //change the, if is default or not
     function changeThemeColor(theme, e) {
         
+        //get active theme stored in local storage
         let acitveTheme = localStorage.getItem("acitveTheme");
+
         if(e)
             e.preventDefault();
 
+        //validate if user stored any theme or apply default theme
         if(acitveTheme == null) {
             $(".bg-warning").removeClass("bg-warning").addClass("bg-warning");
             localStorage.setItem("acitveTheme", "bg-warning");
@@ -307,9 +326,13 @@
         }        
     }
 
+    //function to validate if isset the selected by user
     function checkTheme() {
+
+        //get active theme stored in local storage
         let acitveTheme = localStorage.getItem("acitveTheme");
-        console.log(acitveTheme);
+
+        //validate if user stored any theme or apply default theme
         if(acitveTheme == null)
             //define default theme
             changeThemeColor();
@@ -319,12 +342,59 @@
         }
     }
 
+    //funciton to show default alert dialog
     function showBasicAlert(title, message, type) {
         Swal.fire(
             title,
             message,
             type
         )
+    }
+
+    //funciton to check product is active in site AD_ATIVO
+    function isActive(status) {
+        switch (status) {
+            case "S":
+                return "Sim"
+                break;
+            case "N":
+                return "Não"
+                break;        
+            default:
+                return status
+                break;
+        }
+    }
+
+    //function to check if arrows is pressed
+    //38 is up arrow and 40 is down arrow
+    function isArrowPressed(input) {
+        if(input === 38 || input === 40)
+            return true
+        return false
+    }
+
+    //function to add zero value in input search
+    // called only if arrows pressed
+    function normalizeInput(val) {
+        let lengthStr = val.length;
+        switch (lengthStr) {
+            case 1:
+                return '000' + val
+                break;
+            case 2:
+                return '00' + val
+                break;
+            case 3:
+                return '0' + val
+                break;
+            case 4:
+                return val
+                break;
+            default:
+                val
+                break;
+        }
     }
 
 </script>
