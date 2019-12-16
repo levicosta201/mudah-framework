@@ -59,7 +59,7 @@ class IndexController extends Controller
 		$xml_raw = '<?xml version="1.0" encoding="ISO-8859-1" ?><serviceRequest><requestBody><NOMUSU>teste</NOMUSU><INTERNO>innovation</INTERNO></requestBody></serviceRequest>';
 		$response = simplexml_load_string($this->requestData('http://innovation.fmcdatacom.com.br:8332/mge/service.sbr?serviceName=MobileLoginSP.login', $xml_raw));
 		$session_id = isset($response->responseBody->jsessionid) ? $response->responseBody->jsessionid : null;
-		if(session_id == null)
+		if($session_id == null)
 			throw new \Exception('Request Timeout! Erro ao obter session id');
 
 		$this->saveSessionId($session_id);

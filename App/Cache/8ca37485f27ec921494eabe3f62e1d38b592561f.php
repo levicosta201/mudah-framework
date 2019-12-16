@@ -239,8 +239,6 @@
         let input_id = $("#" + input.val());
         let input_val = input_id.val();
         let input_name = input_id.data('name');
-
-        console.log(input_val + " > " + input_name + " > " + productReference);
         
         if(input_id.val() === '')
             return showBasicAlert('Ooops...', 'Campo em branco 😓 Voce deve selecionar um campo preenchido!');
@@ -287,6 +285,7 @@
         });
     }
 
+    //populate validate products
     function setValidation(selectedInputVal, referenceInputVal, infoInputVal) {
         selectedInput.val(selectedInputVal);
         referenceInput.val(referenceInputVal);
