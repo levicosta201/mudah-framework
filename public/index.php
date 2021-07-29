@@ -49,21 +49,11 @@ $containerBuilder = new ContainerBuilder();
 $containerBuilder->useAutowiring(false);
 $containerBuilder->useAnnotations(false);
 $containerBuilder->addDefinitions([
-    ProductsController::class => create(ProductsController::class)
+    \App\Controller\AuthController::class => create(\App\Controller\AuthController::class)
         ->constructor(get('Response')),
         'Response' => function() {
             return new Response();
         },
-    CategoriesController::class => create(CategoriesController::class)
-        ->constructor(get('Response')),
-        'Response' => function(){
-          return new Response();
-        },
-    LogsController::class => create(LogsController::class)
-        ->constructor(get('Response')),
-        'Response' => function(){
-          return new Response();
-        }
 ]);
 
 $container = $containerBuilder->build();
@@ -74,23 +64,7 @@ $container = $containerBuilder->build();
 */ 
 $routes = simpleDispatcher(function (RouteCollector $route) {    
     //Routes for Dashboard
-    $route->get('/', [ProductsController::class, 'index']);
-    $route->get('/product/get', [ProductsController::class, 'getById']);
-    $route->post('/product/add', [ProductsController::class, 'add']);
-    $route->post('/product/delete', [ProductsController::class, 'delete']);
-    $route->post('/product/update', [ProductsController::class, 'update']);
-    $route->get('/products/import', [ProductsController::class, 'indexImport']);
-    $route->post('/products/import', [ProductsController::class, 'processImport']);   
-
-    //Routes for Categories
-    $route->get('/categories', [CategoriesController::class, 'index']);
-    $route->get('/category/get', [CategoriesController::class, 'getById']);
-    $route->post('/category/add', [CategoriesController::class, 'add']);
-    $route->post('/category/delete', [CategoriesController::class, 'delete']);
-    $route->post('/category/update', [CategoriesController::class, 'update']);
-
-    //Routes for Logs
-    $route->get('/logs', [LogsController::class, 'index']);
+    $route->get('/', [\App\Controller\AuthController::class, 'index']);
 });
 
 $middlewareQueue[] = new FastRoute($routes);
