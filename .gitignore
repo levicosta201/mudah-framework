@@ -1,8 +1,6 @@
 
 App/Cache/
-
 model_duagram\.mwb\.bak
-
 vendor/*
-
 doc_help
+public/images/*

@@ -4,7 +4,7 @@ Este README deve ser utilizado para consultas do projeto e instruções de insta
 
 # Iniciando
 
-Este projeto foi desenvolvido como um teste para webjump, e foi feito de maneira que pudesse ter um desenvolvimento rápido e simples, porém, ao mesmo tempo robusto. Utiliza o padrão MVC, dentro da pasta App, onde poderemos encontrar as pastas Cache, Controller, Core, Model e View. Em cache temos um cache das páginas para que possam ser geradas mais rapidamente.
+Este projeto foi desenvolvido como base para os testes técnicos, e foi feito de maneira que pudesse ter um desenvolvimento rápido e simples, porém, ao mesmo tempo robusto. Utiliza o padrão MVC, dentro da pasta App, onde poderemos encontrar as pastas Cache, Controller, Core, Model e View. Em cache temos um cache das páginas para que possam ser geradas mais rapidamente.
 
 ### Criando Controller
 Em Controller temos todos os arquivos controladores deste projeto. Caso seja necessário adicionar algum é bem simples, bastando seguir o modelo abaixo:
