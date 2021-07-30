@@ -22,8 +22,11 @@
     "autoload": {
         "psr-4" : {
             "App\\Controller\\": "App/Controller/",
+            "App\\Controller\\Api\\": "App/Controller/Api",
             "App\\Model\\": "App/Model/",
-            "App\\Core\\": "App/Helper"
+            "App\\Core\\": "App/Helper",
+            "App\\Services\\": "App/Services",
+            "App\\Repositories\\": "App/Repositories"
         },
         "files": [
             "App/Helper/Helper.php"

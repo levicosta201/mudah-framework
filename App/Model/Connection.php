@@ -57,6 +57,11 @@ class Connection
      *
      */
 	private $host;
+
+    /**
+     * @var
+     */
+	private $port;
 	
 	public function __construct()
 	{
@@ -69,8 +74,9 @@ class Connection
 		$this->database = getenv('APP_DB_DATABASE');
 		$this->password = getenv('APP_DB_PASSWORD');
 		$this->host = getenv('APP_DB_HOST');
+		$this->port = getenv('APP_DB_PORT');
 
-		$this->connection = 'mysql:host='.$this->host.';dbname='.$this->database.';charset=utf8';
+		$this->connection = 'mysql:host='.$this->host.';dbname='.$this->database.';charset=utf8;port='.$this->port;
 		$this->db = new Database($this->connection, $this->user, $this->password);
 		return $this->db;
 	}

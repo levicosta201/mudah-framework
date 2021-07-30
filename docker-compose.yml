@@ -22,12 +22,12 @@ services:
     container_name: kabum-db
     restart: unless-stopped
     ports:
-      - "33306:3306"
+      - "3306:3306"
     environment:
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_DATABASE: 'kabum'
+      MYSQL_ROOT_PASSWORD: 'kabum2021'
+      MYSQL_PASSWORD: 'kabum2021'
+      MYSQL_USER: 'kabum'
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:

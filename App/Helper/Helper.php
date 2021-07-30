@@ -26,50 +26,10 @@ if(!function_exists('url')) {
     }
 }
 
-if(!function_exists('getFileData')){
-    function getFileData($file)
-    {
-        if(!$file)
-            return;
-
-        $data = [];
-        $file_explode = explode('.', $file['name']);
-        $data['name'] = $file_explode[0];
-        $data['extension'] = $file_explode[1];
-        $data['tmp_name'] = $file['tmp_name'];
-
-        return $data;
-    }
-}
-
-if(!function_exists('generateRandFileName')) {
-    function generateRandFileName() : string
-    {
-        return md5(uniqid(rand(), true));
-    }
-}
-
 if(!function_exists('basePublicPath')) {
     function basePublicPath($path)
     {
         return dirname((__DIR__) . '', 2) . $path;
-    }
-}
-
-if(!function_exists('uploadFile')) {
-    function uploadFile($dir, $name, $extension, $tmp)
-    {
-        $file = $dir . basename($name . '.' .$extension);
-        if(move_uploaded_file($tmp, $file))
-            return '/images/product/' .$name . '.' .$extension;
-        return false;
-    }
-}
-
-if(!function_exists('moneyToReal')) {
-    function moneyToReal($value) : string
-    {
-        return number_format($value, 2, ',', '.');
     }
 }
 
@@ -81,15 +41,17 @@ if(!function_exists('saveSession')) {
 }
 
 if(!function_exists('getSession')) {
-    function getSession($key) : string
+    function getSession($key)
     {
         return $_SESSION[$key] ?? '';
     }
 }
 
-if(!function_exists('stringToXml')) {
-    function stringToXml($xml)
+if (!function_exists('cleanString')) {
+    function cleanString($string)
     {
-        return simplexml_load_string($xml);
+        $string = str_replace(' ', '', $string);
+        $string = str_replace('-', '', $string);
+        return preg_replace('/[^A-Za-z0-9\-]/', '', $string);
     }
 }

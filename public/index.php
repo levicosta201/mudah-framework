@@ -51,9 +51,64 @@ $containerBuilder->useAnnotations(false);
 $containerBuilder->addDefinitions([
     \App\Controller\AuthController::class => create(\App\Controller\AuthController::class)
         ->constructor(get('Response')),
-        'Response' => function() {
-            return new Response();
-        },
+
+    \App\Controller\Api\AuthApiController::class => create(\App\Controller\Api\AuthApiController::class)
+        ->constructor(get('Response'), get('AuthService')),
+
+    \App\Services\AuthService::class => create(\App\Services\AuthService::class)
+        ->constructor(get('UserRepository')),
+
+    \App\Controller\ClientsController::class => create(\App\Controller\ClientsController::class)
+        ->constructor(get('ClientService'), get('AddressService')),
+
+    \App\Controller\Api\ClientsApiController::class => create(\App\Controller\Api\ClientsApiController::class)
+        ->constructor(get('ClientService')),
+
+    \App\Controller\AddressController::class => create(\App\Controller\AddressController::class)
+        ->constructor(get('AddressService'), get('ClientService')),
+
+    \App\Controller\Api\AddressApiController::class => create(\App\Controller\Api\AddressApiController::class)
+        ->constructor(get('AddressService')),
+
+    'Response' => function() {
+        return new Response();
+    },
+
+    'AuthService' => function(\DI\Container $container) {
+        return new \App\Services\AuthService($container->get('UserRepository'));
+    },
+
+    'ClientService' => function(\DI\Container $container) {
+        return new \App\Services\ClientService($container->get('ClientRepository'));
+    },
+
+    'AddressService' => function(\DI\Container $container) {
+        return new \App\Services\AddressService($container->get('AddressRepository'));
+    },
+
+    'UserRepository' => function(\DI\Container $container) {
+        return new \App\Repositories\UserRepository($container->get('User'));
+    },
+
+    'ClientRepository' => function(\DI\Container $container) {
+        return new \App\Repositories\ClientRepository($container->get('Client'));
+    },
+
+    'AddressRepository' => function(\DI\Container $container) {
+        return new \App\Repositories\AddressRepository($container->get('Address'), $container->get('Client'));
+    },
+
+    'User' => function() {
+        return new \App\Model\User();
+    },
+
+    'Client' => function() {
+        return new \App\Model\Client();
+    },
+
+    'Address' => function() {
+        return new \App\Model\Address();
+    }
 ]);
 
 $container = $containerBuilder->build();
@@ -65,6 +120,36 @@ $container = $containerBuilder->build();
 $routes = simpleDispatcher(function (RouteCollector $route) {    
     //Routes for Dashboard
     $route->get('/', [\App\Controller\AuthController::class, 'index']);
+
+    $route->addGroup('/clients', function (RouteCollector $route) {
+        $route->addRoute('GET', '', [\App\Controller\ClientsController::class, 'index']);
+        $route->addRoute('GET', '/', [\App\Controller\ClientsController::class, 'index']);
+        $route->addRoute('GET', '/add', [\App\Controller\ClientsController::class, 'add']);
+        $route->addRoute('GET', '/edit/{id}', [\App\Controller\ClientsController::class, 'edit']);
+    });
+
+    $route->addGroup('/address', function (RouteCollector $route) {
+        $route->addRoute('GET', '', [\App\Controller\AddressController::class, 'index']);
+        $route->addRoute('GET', '/', [\App\Controller\AddressController::class, 'index']);
+        $route->addRoute('GET', '/add', [\App\Controller\AddressController::class, 'add']);
+        $route->addRoute('GET', '/edit/{id}', [\App\Controller\AddressController::class, 'edit']);
+    });
+
+    $route->addGroup('/api', function (RouteCollector $route) {
+        $route->addRoute('POST', '/login', [\App\Controller\Api\AuthApiController::class, 'index']);
+
+        $route->addGroup('/clients', function (RouteCollector $route) {
+            $route->addRoute('POST', '/add', [\App\Controller\Api\ClientsApiController::class, 'add']);
+            $route->addRoute('POST', '/delete', [\App\Controller\Api\ClientsApiController::class, 'delete']);
+            $route->addRoute('POST', '/edit', [\App\Controller\Api\ClientsApiController::class, 'edit']);
+        });
+
+        $route->addGroup('/address', function (RouteCollector $route) {
+            $route->addRoute('POST', '/add', [\App\Controller\Api\AddressApiController::class, 'add']);
+            $route->addRoute('POST', '/delete', [\App\Controller\Api\AddressApiController::class, 'delete']);
+            $route->addRoute('POST', '/edit', [\App\Controller\Api\AddressApiController::class, 'edit']);
+        });
+    });
 });
 
 $middlewareQueue[] = new FastRoute($routes);
