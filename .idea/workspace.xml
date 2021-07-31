@@ -2,50 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="801c1579-e205-437a-bb58-f68c4838f107" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/App/Controller/AddressController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Controller/Api/AddressApiController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Controller/Api/AuthApiController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Controller/Api/ClientsApiController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Controller/ClientsController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Model/Address.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Model/Client.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Model/User.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Repositories/AddressRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Repositories/AddressRepositoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Repositories/ClientRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Repositories/ClientRepositoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Repositories/UserRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Repositories/UserRepositoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Services/AddressService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Services/AddressServiceInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Services/AuthService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Services/AuthServiceInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Services/ClientService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Services/ClientServiceInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/View/address/add.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/View/address/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/View/address/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/View/clients/add.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/View/clients/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/View/clients/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/View/static/internal/base.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/View/static/internal/footer.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/View/static/internal/head.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/View/static/internal/menu.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/App/Controller/AddressControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/App/Controller/AuthControllerTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/App/Controller/ClientsControllerTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/.docker/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/testeKabum.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/testeKabum.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/Controller/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Controller/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/Helper/Helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Helper/Helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/Model/Connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/Model/Connection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/View/auth/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/View/auth/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/View/static/base.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/View/static/base.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/View/static/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/View/static/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/View/static/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/App/View/static/head.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +31,11 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/tests/App/Controller/AuthControllerTest.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/App/Controller/AuthController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/App/Controller/Controller.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -112,6 +82,38 @@
       <path value="$PROJECT_DIR$/vendor/middlewares/utils" />
       <path value="$PROJECT_DIR$/vendor/php-di/invoker" />
       <path value="$PROJECT_DIR$/vendor/middlewares/fast-route" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
     </include_path>
   </component>
   <component name="ProjectId" id="1w0a8ucOKe19QLIEKbPpr2OdScZ" />
@@ -123,7 +125,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../gitprojects/br.backoffice.annecarolineglobal" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -146,7 +148,7 @@
       <option name="presentableId" value="Default" />
       <updated>1627597803302</updated>
       <workItem from="1627597804693" duration="4277000" />
-      <workItem from="1627648881740" duration="21339000" />
+      <workItem from="1627648881740" duration="28490000" />
     </task>
     <servers />
   </component>
