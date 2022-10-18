@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the leviframework to projetc webjump.
+ * This file is part of the naframework to projetc webjump.
  *
- * (c) Levi Costa <levi.costa1@gmail.com>
+ * (c) na Costa <na.costa@gmail.com>
  *
  * For non-commercial use
  * 
@@ -16,7 +16,7 @@ use Jenssegers\Blade\Blade;
 /**
  * Class Controller.
  *
- * @author Levi Costa <levi.costa1@gmail.com>
+ * @author na Costa <na.costa1@gmail.com>
  */
 class Controller
 {

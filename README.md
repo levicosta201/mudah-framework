@@ -13,9 +13,9 @@ Em Controller temos todos os arquivos controladores deste projeto. Caso seja nec
 <?php
 
 /*
- * This file is part of the leviframework to projetc webjump.
+ * This file is part of the naframework to projetc webjump.
  *
- * (c) Levi Costa <levi.costa1@gmail.com>
+ * (c) na Costa <na.costa1@gmail.com>
  *
  * For non-commercial use
  * 
@@ -32,7 +32,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Class Controller.
  *
- * @author Levi Costa <levi.costa1@gmail.com>
+ * @author na Costa <na.costa1@gmail.com>
  */
 class Controller extends Controller
 {
@@ -60,9 +60,9 @@ Da mesma maneira criar um model é bem simples, basta seguir o modelo abaixo:
 <?php
 
 /*
- * This file is part of the leviframework to projetc webjump.
+ * This file is part of the naframework to projetc webjump.
  *
- * (c) Levi Costa <levi.costa1@gmail.com>
+ * (c) na Costa <na@gmail.com>
  *
  * For non-commercial use
  * 

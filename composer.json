@@ -1,10 +1,10 @@
 {
-    "name": "levi/leviproject",
+    "name": "na/naproject",
     "description": "project to webjump challenge",
     "authors": [
         {
-            "name": "Levi Costa",
-            "email": "levi.costa1@gmail.com"
+            "name": "na Costa",
+            "email": "na.costa1@gmail.com"
         }
     ],
     "require": {

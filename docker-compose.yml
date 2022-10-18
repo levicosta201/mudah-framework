@@ -7,8 +7,8 @@ services:
         uid: 1000
       context: ./
       dockerfile: ./.docker/Dockerfile
-    image: kabum-image
-    container_name: kabum-app
+    image: pianini-image
+    container_name: pianini-app
     restart: unless-stopped
     working_dir: /var/www/
     volumes:
@@ -19,7 +19,7 @@ services:
 
   db:
     image: mysql:5.7
-    container_name: kabum-db
+    container_name: pianini-db
     restart: unless-stopped
     ports:
       - "33306:3306"
@@ -37,10 +37,10 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: kabum-nginx
+    container_name: pianini-nginx
     restart: unless-stopped
     ports:
-      - 8080:80
+      - 8079:80
     volumes:
       - ./:/var/www
       - ./.docker/nginx/conf.d/:/etc/nginx/conf.d/
